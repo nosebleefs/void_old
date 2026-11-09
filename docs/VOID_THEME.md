@@ -1,7 +1,8 @@
 # Void theme
 
-Void is the default interface theme for this build of Stash: a true-black
-(OLED) canvas, the bundled Inter typeface and a single blue accent.
+The Void design is the default (and only) theme of Void, this personal build
+of Stash: a true-black (OLED) canvas, the bundled Inter typeface and a single
+blue accent.
 
 ## Where things live
 
@@ -30,6 +31,14 @@ useful ones:
 
 Older stylesheet variables (`$text-color`, `$secondary`, `$card-bg`, …) still
 exist and point at Void tokens, so existing component styles keep working.
+
+## App name and icon
+
+The visible name is "Void" (navigation bar, page titles, installed-app name,
+login page, English interface text). The icon is a white ring with the blue
+accent dot on black; source: `ui/v2.5/public/stash_icon.svg` (file names kept
+so existing references keep working). Internal names (`stash` program,
+`STASH_*` variables, config and database files) are unchanged on purpose.
 
 ## Behaviour changes that came with the theme
 

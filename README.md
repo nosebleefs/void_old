@@ -1,3 +1,36 @@
+# Void
+
+Void is a personal build of [Stash](https://github.com/stashapp/stash), the self-hosted media organiser, with a true-black (OLED) interface and, over time, a trimmed-down set of features.
+
+- **Licence:** GNU AGPL-3.0, the same as Stash. The application itself is the work of the Stash developers.
+- **Not affiliated with Stash.** Please do not report problems with this build to the Stash project.
+- **Design:** see [docs/VOID_THEME.md](docs/VOID_THEME.md).
+- **How changes are decided:** see [docs/fork/MASTER_PROMPT.md](docs/fork/MASTER_PROMPT.md).
+
+Only the visible name is Void. Internal names stay as they are so existing installs, scrapers and plugins keep working: the `stash` program, the `config.yml` location, `STASH_*` environment variables, the database file and the API. Stash-box and StashDB are separate services and keep their names.
+
+## Building the Docker image (Unraid)
+
+In the Unraid terminal:
+
+```bash
+mkdir -p /mnt/user/appdata/void-src && cd /mnt/user/appdata/void-src
+```
+
+```bash
+curl -L https://github.com/nosebleefs/void/archive/refs/heads/develop.tar.gz | tar xz --strip-components=1
+```
+
+```bash
+docker build -t void -f docker/build/x86_64/Dockerfile .
+```
+
+Then, in the Unraid Docker tab, edit the container and set **Repository** to `void`. Back up the container's appdata first: a newer build may upgrade the database the first time it starts.
+
+---
+
+*The original Stash README follows.*
+
 # Stash
 
 [![Build](https://github.com/stashapp/stash/actions/workflows/build.yml/badge.svg?branch=develop&event=push)](https://github.com/stashapp/stash/actions/workflows/build.yml)
