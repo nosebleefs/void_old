@@ -947,8 +947,8 @@ export const ScenePlayer: React.FC<IScenePlayerProps> = PatchComponent(
       player
         .mediaSession()
         .setMetadata(
-          scene?.title ?? "Stash",
-          scene?.studio?.name ?? performers ?? "Stash",
+          scene?.title ?? "Void",
+          scene?.studio?.name ?? performers ?? "Void",
           scene.paths.screenshot || ""
         );
     }, [getPlayer, scene]);

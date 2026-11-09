@@ -312,7 +312,7 @@ export const App: React.FC = () => {
     );
   }
 
-  const title = config.data?.configuration.ui.title || "Stash";
+  const title = config.data?.configuration.ui.title || "Void";
   const titleProps = makeTitleProps(title);
   const htmlAttributes = { lang: language };
 
