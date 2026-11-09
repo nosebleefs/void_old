@@ -1,16 +1,29 @@
 .card-popovers {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 10px;
+  gap: 2px;
+  justify-content: flex-start;
+  margin: 0 -6px 4px;
+  padding-top: 2px;
 
-  .btn {
-    padding-bottom: 3px;
-    padding-top: 3px;
+  // counts row under a card: quiet until hovered
+  .btn,
+  .btn.minimal {
+    border-radius: 6px;
+    color: $void-muted;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 2px 6px;
+
+    &:hover:not(:disabled) {
+      background: $void-surface-4;
+      color: $void-text-strong;
+    }
   }
 
   .fa-icon {
-    margin-right: 7px;
+    font-size: 12px;
+    margin-right: 5px;
   }
 }
 
@@ -20,7 +33,7 @@
 
 .card-section {
   margin-bottom: 0;
-  padding: 0.5rem 1rem 0 1rem;
+  padding: 10px 2px 0;
 }
 
 .performer-tag-container,
@@ -57,10 +70,41 @@
   }
 }
 
-.studio-logo {
-  margin-top: 1rem;
-  max-height: 8rem;
+// studio shown above the title on scene, image and gallery pages
+/* stylelint-disable declaration-no-important */
+h1.studio-logo {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 1.25rem 0 0.25rem;
+  text-align: left !important;
+
+  a {
+    color: $void-text-2;
+    display: inline-flex;
+
+    &:hover {
+      color: $void-text-strong;
+    }
+  }
+
+  .studio-name {
+    align-items: center;
+    display: inline-flex;
+    gap: 8px;
+
+    .fa-icon {
+      color: $void-muted;
+      margin: 0;
+    }
+  }
+}
+/* stylelint-enable declaration-no-important */
+
+img.studio-logo {
+  max-height: 3.5rem;
   max-width: 100%;
+  object-fit: contain;
+  object-position: left;
 }
 
 @include media-breakpoint-only(lg) {
@@ -83,25 +127,32 @@
 
 .scene-header {
   flex-basis: auto;
-  font-size: 1.5rem;
-  margin-top: 30px;
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-top: 0.5rem;
 
-  @include media-breakpoint-down(xl) {
-    font-size: 1.75rem;
+  &.no-studio {
+    margin-top: 1.5rem;
   }
 }
 
 .scene-subheader {
+  align-items: center;
+  color: $void-text-3;
   display: flex;
+  font-size: 13px;
   justify-content: space-between;
   margin-top: 0.5rem;
 
   .date {
-    color: $text-muted;
+    color: $void-muted;
   }
 
   .resolution {
-    font-weight: bold;
+    color: $void-text-2;
+    font-weight: 600;
   }
 }
 
@@ -129,6 +180,68 @@
 #scene-details-container {
   .tab-content {
     min-height: 15rem;
+  }
+}
+
+// details panel beside the player
+.scene-tabs {
+  .scene-toolbar {
+    border-bottom: 1px solid $void-line;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+
+    .btn.minimal {
+      color: $void-text-3;
+
+      &:hover:not(:disabled) {
+        color: $void-text-strong;
+      }
+    }
+  }
+
+  // keep every tab on one line; scroll sideways if the panel is narrow
+  .nav-tabs {
+    flex-wrap: nowrap;
+    gap: 0;
+    margin-bottom: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      padding: 10px 9px;
+      white-space: nowrap;
+    }
+  }
+
+  .scene-details h6 {
+    color: $void-muted;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  // section labels inside the details panel (Details, Tags, Performers)
+  .tab-pane > .row:not(:first-child) h6 {
+    color: $void-muted;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin: 1.25rem 0 0.5rem;
+    text-transform: uppercase;
+  }
+
+  p.pre {
+    color: $void-text-2;
+    line-height: 1.6;
+  }
+
+  .tag-item:first-of-type {
+    margin-left: 0;
   }
 }
 
@@ -174,28 +287,41 @@ textarea.scene-description {
   }
 }
 
+// small labels laid over thumbnails (resolution, duration, speed)
 .scene-specs-overlay,
 .scene-interactive-speed-overlay {
-  bottom: 1rem;
-  color: $text-color;
-  display: block;
-  font-weight: 400;
-  letter-spacing: -0.03rem;
+  background: $void-overlay;
+  border-radius: 6px;
+  bottom: 10px;
+  color: $void-text-strong;
+  display: flex;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  gap: 6px;
+  line-height: 1.5;
+  padding: 1px 7px;
+  pointer-events: none;
   position: absolute;
-  right: 0.7rem;
-  text-shadow: 0 0 3px #000;
+  right: 8px;
 }
 
-.scene-specs-overlay {
-  right: 0.7rem;
+// nothing visible to show (e.g. a marker without file details)
+.scene-specs-overlay:not(:has(.overlay-resolution, .overlay-duration)) {
+  display: none;
 }
 
 .scene-specs-overlay > span:not(:last-child) {
-  margin-right: 0.3rem;
+  margin-right: 0;
 }
 
 .scene-interactive-speed-overlay {
-  left: 0.7rem;
+  left: 8px;
+  right: auto;
+
+  &:empty {
+    display: none;
+  }
 }
 
 .extra-scene-info {
@@ -203,7 +329,7 @@ textarea.scene-description {
 }
 
 .overlay-resolution {
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -213,7 +339,8 @@ textarea.scene-description {
   }
 
   .scene-group-scene-number {
-    text-align: center;
+    color: $void-muted;
+    font-size: 13px;
   }
 }
 
@@ -227,7 +354,6 @@ textarea.scene-description {
   &-preview {
     display: flex;
     justify-content: center;
-    margin-bottom: 5px;
     position: relative;
 
     &-image,
@@ -254,7 +380,19 @@ textarea.scene-description {
   }
 
   &__details {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    gap: 2px;
+    margin-bottom: 0.375rem;
+  }
+
+  &__date {
+    color: $void-muted;
+  }
+
+  &__description {
+    color: $void-text-3;
   }
 
   &:hover,
@@ -278,15 +416,14 @@ textarea.scene-description {
 
 .scene-card.card,
 .scene-marker-card.card {
-  overflow: hidden;
   padding: 0;
 
   @media (max-width: 576px) {
     width: 100%;
   }
 
-  &.fileless {
-    background-color: darken($card-bg, 5%);
+  &.fileless .thumbnail-section {
+    opacity: 0.6;
   }
 }
 
@@ -551,7 +688,7 @@ input[type="range"].blue-slider {
   }
 
   .edit-buttons-container {
-    background-color: #202b33;
+    background-color: $void-surface-1;
     position: sticky;
     top: 0;
     z-index: 3;
@@ -604,7 +741,7 @@ input[type="range"].blue-slider {
 
 .organized-button {
   &.not-organized {
-    color: rgba(191, 204, 214, 0.5);
+    color: $void-muted;
   }
 }
 
@@ -671,13 +808,13 @@ input[type="range"].blue-slider {
   }
 
   .queue-scene-studio {
-    color: #d3d0d0;
+    color: $void-text-2;
     font-weight: 600;
   }
 
   .queue-scene-performers,
   .queue-scene-date {
-    color: #d3d0d0;
+    color: $void-text-2;
     font-size: 0.9rem;
     font-weight: 400;
 

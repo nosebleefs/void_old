@@ -168,7 +168,7 @@ const newPathsList = allMenuItems
 const MainNavbarMenuItems = PatchComponent(
   "MainNavBar.MenuItems",
   (props: React.PropsWithChildren<unknown>) => {
-    return <Nav>{props.children}</Nav>;
+    return <Nav className="main-nav-menu">{props.children}</Nav>;
   }
 );
 

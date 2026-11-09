@@ -266,7 +266,12 @@ const (
 	drawFunscriptHeatmapRangeDefault = true
 
 	ThemeColor        = "theme_color"
-	DefaultThemeColor = "#202b33"
+	DefaultThemeColor = "#000000"
+
+	// legacyDefaultThemeColor was the default before the Void theme. Older
+	// versions wrote it into config files explicitly, so it is treated as
+	// "not customised" and replaced with the current default.
+	legacyDefaultThemeColor = "#202b33"
 
 	sslCertPath = "ssl_cert_path"
 	sslKeyPath  = "ssl_key_path"
@@ -1010,7 +1015,11 @@ func (i *Config) GetPort() int {
 }
 
 func (i *Config) GetThemeColor() string {
-	return i.getString(ThemeColor)
+	c := i.getString(ThemeColor)
+	if strings.EqualFold(c, legacyDefaultThemeColor) {
+		return DefaultThemeColor
+	}
+	return c
 }
 
 func (i *Config) GetExternalHost() string {

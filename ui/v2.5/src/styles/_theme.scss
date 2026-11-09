@@ -1,53 +1,407 @@
-/* Blueprint dark theme */
+/*
+ * Void — the default Stash theme.
+ *
+ * 1. Bootstrap is configured from the Void design tokens (styles/_tokens.scss)
+ *    so every stock Bootstrap component starts out matching the theme.
+ * 2. After Bootstrap is imported, the base elements and shared components
+ *    are refined so they match the Void design.
+ *
+ * The legacy variable names ($text-color, $secondary, $card-bg, ...) are kept
+ * because component stylesheets throughout the app use them; they now point
+ * at Void tokens.
+ */
 
-$secondary: #394b59;
-$muted-gray: #bfccd6;
-$success: #0f9960;
-$warning: #d9822b;
-$danger: #db3737;
+@import "tokens";
+@import "fonts";
 
+// ---------------------------------------------------------------------------
+// Legacy names used by component stylesheets
+// ---------------------------------------------------------------------------
+$secondary: $void-surface-5;
+$muted-gray: $void-text-3;
+$success: $void-success;
+$warning: $void-warning;
+$danger: $void-danger;
+$text-color: $void-text;
+$text-muted: $void-muted;
+$pre-color: $void-text;
+$dark-text: $void-on-accent;
+$textfield-bg: $void-surface-2;
+$card-bg: $void-surface-1;
+$card-cap-bg: rgba(255, 255, 255, 0.02);
+$popover-bg: $void-surface-2;
+
+// ---------------------------------------------------------------------------
+// Bootstrap configuration
+// ---------------------------------------------------------------------------
 $theme-colors: (
-  primary: #137cbd,
+  primary: $void-accent,
   secondary: $secondary,
   success: $success,
+  info: $void-info,
   warning: $warning,
   danger: $danger,
-  dark: #394b59,
+  light: $void-text-2,
+  dark: $void-surface-1,
 );
 
-$body-bg: #202b33;
-$text-muted: $muted-gray;
-$link-color: #48aff0;
-$link-hover-color: $link-color;
-$text-color: #f5f8fa;
-$pre-color: $text-color;
-$navbar-dark-color: rgb(245, 248, 250);
-$popover-bg: $secondary;
-$dark-text: #182026;
-$textfield-bg: rgba(16, 22, 26, 0.3);
-$card-bg: #30404d;
-$card-cap-bg: rgba(#000, 0.03);
+$yiq-text-dark: $void-on-accent;
+$yiq-text-light: $void-text-strong;
+
+$body-bg: $void-bg;
+$body-color: $void-text;
+$link-color: $void-accent;
+$link-hover-color: $void-accent-hover;
+$link-hover-decoration: none;
+
+$font-family-sans-serif: $void-font-sans;
+$font-family-monospace: $void-font-mono;
+$headings-font-weight: 600;
+$headings-color: $void-text-strong;
+$small-font-size: 85%;
+
+$border-color: $void-line-2;
+$border-radius: $void-radius;
+$border-radius-sm: $void-radius-sm;
+$border-radius-lg: $void-radius-lg;
+$hr-border-color: $void-line;
+
+$component-active-color: $void-on-accent;
+$component-active-bg: $void-accent;
+
+$enable-shadows: false;
+$enable-gradients: false;
+
+// focus ring
+$input-btn-focus-width: 3px;
+$input-btn-focus-color: rgba($void-accent, 0.35);
+$input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color;
+
+// buttons
+$btn-font-weight: 500;
+$btn-padding-y: 7px;
+$btn-padding-x: 0.875rem;
+$btn-padding-y-sm: 0.25rem;
+$btn-padding-x-sm: 0.625rem;
+$btn-font-size-sm: 0.875rem;
+$btn-border-radius: $void-radius;
+$btn-border-radius-sm: $void-radius-sm;
+$btn-border-radius-lg: $void-radius-lg;
+$btn-transition: color $void-transition, background-color $void-transition,
+  border-color $void-transition, box-shadow $void-transition;
+
+// forms
+$input-bg: $void-surface-2;
+$input-disabled-bg: #080808;
+$input-color: $void-text;
+$input-border-color: $void-line-2;
+$input-focus-bg: $void-surface-2;
+$input-focus-border-color: $void-accent-line;
+$input-focus-color: $void-text;
+$input-placeholder-color: $void-muted;
+$input-plaintext-color: $void-text;
+$input-group-addon-color: $void-text-3;
+$input-group-addon-bg: $void-surface-4;
+$input-group-addon-border-color: $void-line-2;
+$form-text-margin-top: 0.375rem;
+
+$custom-select-bg: $void-surface-2;
+$custom-select-color: $void-text;
+$custom-select-border-color: $void-line-2;
+$custom-select-indicator-color: $void-muted;
+$custom-select-disabled-bg: #080808;
+$custom-select-focus-border-color: $void-accent-line;
+
+$custom-control-indicator-bg: $void-surface-2;
+$custom-control-indicator-border-color: $void-line-4;
+$custom-control-indicator-checked-bg: $void-accent;
+$custom-control-indicator-checked-color: $void-on-accent;
+$custom-control-indicator-checked-border-color: $void-accent;
+$custom-control-indicator-active-bg: $void-accent-hover;
+$custom-control-indicator-focus-border-color: $void-accent-line;
+$custom-control-label-disabled-color: $void-muted;
+$custom-switch-indicator-border-radius: $void-radius-pill;
+
+$custom-range-track-bg: $void-line-3;
+$custom-range-thumb-bg: $void-accent;
+$custom-range-thumb-active-bg: $void-accent-hover;
+
+// dropdowns
+$dropdown-bg: $void-surface-2;
+$dropdown-color: $void-text;
+$dropdown-border-color: $void-line-2;
+$dropdown-border-radius: $void-radius-lg;
+$dropdown-divider-bg: $void-line;
+$dropdown-box-shadow: $void-shadow-pop;
+$dropdown-padding-y: 0.375rem;
+$dropdown-item-padding-y: 0.5rem;
+$dropdown-item-padding-x: 0.875rem;
+$dropdown-link-color: $void-text-2;
+$dropdown-link-hover-color: $void-text-strong;
+$dropdown-link-hover-bg: $void-surface-5;
+$dropdown-link-active-color: $void-text-strong;
+$dropdown-link-active-bg: $void-surface-6;
+$dropdown-link-disabled-color: $void-faint;
+$dropdown-header-color: $void-muted;
+
+// navbar
+$navbar-padding-y: 0;
+$navbar-dark-color: $void-text-nav;
+$navbar-dark-hover-color: $void-text-strong;
+$navbar-dark-active-color: $void-text-strong;
+$navbar-dark-disabled-color: $void-faint;
+$navbar-dark-toggler-border-color: transparent;
+
+// navs and tabs
+$nav-link-padding-y: 0.5rem;
+$nav-link-padding-x: 0.75rem;
+$nav-tabs-border-color: $void-line;
+$nav-tabs-border-width: 1px;
+$nav-tabs-link-active-color: $void-text-strong;
+$nav-tabs-link-active-bg: transparent;
+$nav-tabs-link-active-border-color: transparent;
+$nav-pills-border-radius: $void-radius-pill;
+$nav-pills-link-active-color: $void-accent;
+$nav-pills-link-active-bg: $void-accent-soft;
+
+// pagination
+$pagination-color: $void-text-3;
+$pagination-bg: transparent;
+$pagination-border-color: transparent;
+$pagination-hover-color: $void-text-strong;
+$pagination-hover-bg: $void-surface-4;
+$pagination-hover-border-color: transparent;
+$pagination-active-color: $void-bg;
+$pagination-active-bg: $void-text;
+$pagination-active-border-color: $void-text;
+$pagination-disabled-color: $void-faint;
+$pagination-disabled-bg: transparent;
+$pagination-disabled-border-color: transparent;
+
+// cards
+$card-border-color: $void-line;
+$card-border-radius: $void-radius-lg;
+$card-inner-border-radius: $void-radius-lg;
+$card-color: $void-text;
+
+// tooltips and popovers
+$tooltip-bg: $void-surface-6;
+$tooltip-color: $void-text;
+$tooltip-opacity: 1;
+$tooltip-border-radius: 6px;
+$tooltip-padding-y: 0.375rem;
+$tooltip-padding-x: 0.625rem;
+$tooltip-arrow-color: $void-surface-6;
+
+$popover-border-color: $void-line-2;
+$popover-border-radius: $void-radius-lg;
+$popover-box-shadow: $void-shadow-pop;
+$popover-header-bg: $void-surface-3;
+$popover-header-color: $void-text-strong;
+$popover-body-color: $void-text;
+$popover-arrow-color: $popover-bg;
+$popover-arrow-outer-color: $void-line-2;
+
+// toasts
+$toast-color: $void-text;
+$toast-background-color: $void-surface-2;
+$toast-border-color: $void-line-2;
+$toast-border-radius: $void-radius-lg;
+$toast-header-color: $void-text;
+$toast-header-background-color: transparent;
+$toast-header-border-color: transparent;
+
+// badges
+$badge-font-weight: 500;
+$badge-padding-y: 0.3em;
+$badge-padding-x: 0.6em;
+$badge-border-radius: 6px;
+$badge-pill-border-radius: $void-radius-pill;
+
+// modals
+$modal-content-bg: $void-surface-1;
+$modal-content-color: $void-text;
+$modal-content-border-color: $void-line-2;
+$modal-content-border-radius: $void-radius-xl;
+$modal-content-box-shadow-xs: $void-shadow-pop;
+$modal-content-box-shadow-sm-up: $void-shadow-pop;
+$modal-backdrop-bg: #000;
+$modal-backdrop-opacity: 0.8;
+$modal-header-border-color: $void-line;
+$modal-footer-border-color: $void-line;
+
+// alerts, progress, list groups, tables
+$alert-border-radius: $void-radius;
+$progress-bg: $void-line-3;
+$progress-bar-bg: $void-accent;
+$progress-border-radius: $void-radius-pill;
+
+$list-group-color: $void-text;
+$list-group-bg: transparent;
+$list-group-border-color: $void-line;
+$list-group-hover-bg: $void-surface-3;
+$list-group-active-color: $void-text-strong;
+$list-group-active-bg: $void-surface-6;
+$list-group-active-border-color: $void-line-2;
+$list-group-action-color: $void-text-2;
+$list-group-action-hover-color: $void-text-strong;
+$list-group-action-active-bg: $void-surface-5;
+$list-group-disabled-color: $void-faint;
+
+$table-color: $void-text;
+$table-bg: transparent;
+$table-accent-bg: rgba(255, 255, 255, 0.025);
+$table-hover-bg: rgba(255, 255, 255, 0.04);
+$table-border-color: $void-line;
+$table-head-color: $void-muted;
+$table-dark-bg: $void-surface-1;
+$table-dark-border-color: $void-line;
+
+$close-color: $void-text-3;
+$close-text-shadow: none;
+$close-font-weight: 400;
+
+$kbd-bg: $void-surface-5;
+$kbd-color: $void-text;
+$code-color: $void-accent-hover;
 
 @import "bootstrap/scss/bootstrap";
 
-$red1: #a82a2a;
-$orange1: #a66321;
-$sepia1: #63411e;
-$dark-gray2: #202b33;
-$dark-gray5: #394b59;
+// colours kept for components that still reference them
+$red1: #b23b3b;
+$orange1: #b66d1f;
+$sepia1: #6b4a26;
+$dark-gray2: $void-surface-1;
+$dark-gray5: $void-surface-5;
+
+// ---------------------------------------------------------------------------
+// Base elements
+// ---------------------------------------------------------------------------
+:root {
+  color-scheme: dark;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  letter-spacing: -0.025em;
+}
+
+hr {
+  margin: 5px 0;
+}
+
+::selection {
+  background: rgba($void-accent, 0.35);
+  color: $void-text-strong;
+}
+
+:focus-visible {
+  outline: 2px solid $void-accent;
+  outline-offset: 2px;
+}
+
+// ---------------------------------------------------------------------------
+// Buttons
+// ---------------------------------------------------------------------------
+.btn {
+  letter-spacing: -0.005em;
+}
+
+.btn-primary {
+  &:hover {
+    background-color: $void-accent-hover;
+    border-color: $void-accent-hover;
+    color: $void-on-accent;
+  }
+}
+
+// secondary buttons sit just above the black canvas and lighten on hover
+.btn-secondary {
+  background-color: $void-surface-2;
+  border-color: $void-line-2;
+  color: $void-text-2;
+
+  &:hover {
+    background-color: $void-surface-5;
+    border-color: $void-line-3;
+    color: $void-text-strong;
+  }
+
+  &:focus,
+  &.focus {
+    background-color: $void-surface-5;
+    border-color: $void-line-3;
+    color: $void-text-strong;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    background-color: $void-surface-6;
+    border-color: $void-line-3;
+    color: $void-text-strong;
+  }
+
+  &.disabled,
+  &:disabled {
+    background-color: $void-surface-2;
+    border-color: $void-line;
+    color: $void-muted;
+  }
+}
+
+.btn-dark {
+  background-color: $void-surface-1;
+  border-color: $void-line;
+  color: $void-text-2;
+
+  &:hover,
+  &:focus {
+    background-color: $void-surface-4;
+    border-color: $void-line-2;
+    color: $void-text-strong;
+  }
+}
+
+.btn-danger,
+.btn-success,
+.btn-warning {
+  color: $void-on-accent;
+
+  &:hover {
+    color: $void-on-accent;
+  }
+}
+
+.btn-link {
+  color: $void-accent;
+
+  &:hover {
+    color: $void-accent-hover;
+    text-decoration: none;
+  }
+}
 
 .btn.active:not(.disabled),
 .btn.active.minimal:not(.disabled) {
-  background-color: rgba(138, 155, 168, 0.3);
-  color: $text-color;
+  background-color: $void-surface-6;
+  color: $void-text-strong;
 }
 
 a.minimal,
 button.minimal {
   background: none;
   border: none;
-  color: $text-color;
-  transition: none;
+  color: $void-text-2;
+  transition: background-color $void-transition, color $void-transition;
 
   &:disabled {
     background: none;
@@ -55,94 +409,48 @@ button.minimal {
   }
 
   &:hover:not(:disabled) {
-    background: rgba(138, 155, 168, 0.15);
-    color: $text-color;
+    background: $void-surface-4;
+    color: $void-text-strong;
   }
 
   &:active:not(:disabled) {
-    background: rgba(138, 155, 168, 0.3);
-    color: $text-color;
+    background: $void-surface-6;
+    color: $void-text-strong;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    box-shadow: $input-btn-focus-box-shadow;
   }
 }
 
-hr {
-  margin: 5px 0;
+.btn-group > .btn-secondary + .btn-secondary,
+.btn-group > .btn-secondary + .btn-group > .btn-secondary {
+  margin-left: -1px;
 }
 
 :not(.show-carat) > .dropdown-toggle::after {
   content: none;
 }
 
-.nav-link {
-  color: $text-color;
-}
+// ---------------------------------------------------------------------------
+// Forms
+// ---------------------------------------------------------------------------
+.form-control,
+.custom-select {
+  transition: border-color $void-transition, box-shadow $void-transition;
 
-.nav-tabs {
-  border: none;
-  margin: auto;
-  margin-bottom: 1.5rem;
-
-  .nav-link {
-    border: none;
-    color: $text-color;
-    padding: 8px;
-
-    &.active {
-      border-bottom: 2px solid;
-      color: $link-color;
-
-      &:hover {
-        border-bottom-color: $link-color;
-        cursor: default;
-      }
-    }
-
-    &:hover {
-      border-bottom: 2px solid white;
-    }
+  &:hover:not(:disabled):not(:focus) {
+    border-color: $void-line-3;
   }
-}
-
-.tab-content {
-  padding-bottom: 2rem;
-}
-
-.table-striped tr:nth-child(odd) td {
-  background: rgba(92, 112, 128, 0.15);
-}
-
-.table {
-  border: none;
-  color: $text-color;
-
-  thead {
-    th {
-      border-bottom: 1px solid #414c53;
-      border-right: none;
-      border-top: none;
-    }
-  }
-
-  td {
-    border: none;
-    border-color: #414c53;
-    padding: 0.25rem 0.75rem;
-  }
-}
-
-.popover {
-  max-width: inherit;
-}
-
-.card {
-  border: none;
-  margin: 5px;
-  overflow: hidden;
 }
 
 .form-control {
   &-plaintext {
-    color: $text-color;
+    color: $void-text;
     margin: 0;
     padding: 0;
 
@@ -160,31 +468,240 @@ hr {
   }
 }
 
-.popover {
-  &-body {
-    color: $text-color;
+.input-control,
+.text-input {
+  background-color: $void-surface-2;
+  border-color: $void-line-2;
+  color: $void-text;
 
-    .btn {
-      color: $text-color;
+  &:focus {
+    background-color: $void-surface-2;
+    color: $void-text;
+  }
+
+  &::placeholder {
+    color: $void-muted;
+  }
+}
+
+.form-label,
+label {
+  color: $void-text-2;
+}
+
+.custom-control-label::before {
+  border-radius: 5px;
+}
+
+.custom-switch .custom-control-label::before {
+  background-color: $void-line-3;
+  border-color: $void-line-3;
+}
+
+.custom-switch .custom-control-label::after {
+  background-color: $void-muted;
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: $void-on-accent;
+}
+
+// ---------------------------------------------------------------------------
+// Navs and tabs
+// ---------------------------------------------------------------------------
+.nav-link {
+  color: $void-text-nav;
+  font-weight: 500;
+
+  &:hover {
+    color: $void-text-strong;
+  }
+}
+
+.nav-tabs {
+  border-bottom: 1px solid $void-line;
+  flex-wrap: wrap;
+  gap: 0 4px;
+  margin: auto;
+  margin-bottom: 1.5rem;
+
+  .nav-link {
+    border: none;
+    border-radius: 0;
+    color: $void-text-nav;
+    margin-bottom: -1px;
+    padding: 10px 10px;
+
+    &.active {
+      background: transparent;
+      box-shadow: inset 0 -2px 0 $void-accent;
+      color: $void-text-strong;
+      font-weight: 600;
+
+      &:hover {
+        cursor: default;
+      }
+    }
+
+    &:hover:not(.active) {
+      box-shadow: inset 0 -2px 0 $void-line-4;
+      color: $void-text-strong;
     }
   }
 }
 
+.tab-content {
+  padding-bottom: 2rem;
+}
+
+// ---------------------------------------------------------------------------
+// Tables
+// ---------------------------------------------------------------------------
+.table-striped tr:nth-child(odd) td {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.table {
+  border: none;
+  color: $void-text;
+
+  thead {
+    th {
+      border-bottom: 1px solid $void-line-2;
+      border-right: none;
+      border-top: none;
+      color: $void-muted;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+
+  td {
+    border: none;
+    border-color: $void-line;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Overlays: popovers, tooltips, dropdowns, modals, toasts
+// ---------------------------------------------------------------------------
+.popover {
+  max-width: inherit;
+
+  &-header {
+    border-bottom-color: $void-line;
+  }
+
+  &-body {
+    color: $void-text;
+
+    .btn {
+      color: $void-text-2;
+    }
+  }
+}
+
+.dropdown-menu {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+
+  .dropdown-item {
+    border-radius: $void-radius-sm;
+  }
+}
+
+.card {
+  border: none;
+  margin: 5px;
+  overflow: hidden;
+}
+
 .modal {
-  color: $text-color;
+  color: $void-text;
 
   .close {
-    color: $text-color;
+    color: $void-text-3;
+    opacity: 1;
+
+    &:hover {
+      color: $void-text-strong;
+    }
   }
 
   &-header,
   &-body,
   &-footer {
-    background-color: $card-bg;
-    color: $text-color;
+    background-color: $void-surface-1;
+    color: $void-text;
+  }
+
+  &-header {
+    padding: 1.25rem 1.5rem 1rem;
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+
+  &-body {
+    padding: 1.25rem 1.5rem;
+  }
+
+  &-footer {
+    padding: 1rem 1.5rem;
   }
 
   &-content {
-    background-color: transparent;
+    background-color: $void-surface-1;
+    overflow: hidden;
   }
 }
+
+.badge-secondary {
+  background-color: $void-surface-5;
+  color: $void-text-2;
+}
+
+.badge-primary {
+  color: $void-on-accent;
+}
+
+.alert {
+  border-width: 1px;
+}
+
+.list-group-item {
+  border-color: $void-line;
+}
+
+.spinner-border {
+  color: $void-accent;
+}
+
+// ---------------------------------------------------------------------------
+// Placeholder artwork
+// ---------------------------------------------------------------------------
+// Studios, groups and tags without their own image get a generated icon.
+// Dim it so empty items read as placeholders rather than bright white blocks.
+img[src*="default=true"] {
+  opacity: 0.18;
+}
+
+// Dropdown menus that use Bootstrap's bg-secondary utility (for example the
+// scene "..." menu) follow the same surface as every other menu.
+/* stylelint-disable declaration-no-important */
+.dropdown-menu.bg-secondary {
+  background-color: $void-surface-2 !important;
+
+  .dropdown-item.bg-secondary {
+    background-color: transparent !important;
+
+    &:hover,
+    &:focus {
+      background-color: $void-surface-5 !important;
+    }
+  }
+}
+/* stylelint-enable declaration-no-important */

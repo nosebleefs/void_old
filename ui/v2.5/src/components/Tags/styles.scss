@@ -46,7 +46,7 @@
     }
 
     &.not-favorite {
-      color: rgba(191, 204, 214, 0.5);
+      color: $void-muted;
       filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.9));
       opacity: 0;
     }
@@ -74,7 +74,7 @@
   .tag-head {
     .name-icons {
       .not-favorite {
-        color: rgba(191, 204, 214, 0.5);
+        color: $void-muted;
       }
 
       .favorite {
@@ -127,7 +127,7 @@
 
 .tag-item {
   .icon-wrapper {
-    color: #202b33;
+    color: currentColor;
     opacity: 0.5;
     padding-left: 6px;
   }
@@ -135,7 +135,7 @@
 
 .tag-item {
   .tag-icon {
-    color: #202b33;
+    color: currentColor;
     margin: 0;
     opacity: 0.5;
     padding-left: 3px;

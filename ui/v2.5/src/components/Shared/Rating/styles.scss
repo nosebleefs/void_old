@@ -76,15 +76,15 @@
   }
 
   .unsetting {
-    color: gold;
+    color: $void-accent;
   }
 
   .setting {
-    color: gold;
+    color: $void-accent;
   }
 
   .set {
-    color: gold;
+    color: $void-accent;
   }
 }
 
@@ -95,7 +95,7 @@
 
 .rating-number {
   .fa-icon {
-    color: gold;
+    color: $void-accent;
     margin-left: 0;
   }
 

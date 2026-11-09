@@ -339,7 +339,7 @@ func getSegmentColor(intensity float64) colorful.Color {
 	colorRed, _ := colorful.Hex("#dc143c")    // Crimson
 	colorPurple, _ := colorful.Hex("#800080") // Purple
 	colorBlack, _ := colorful.Hex("#0f001e")
-	colorBackground, _ := colorful.Hex("#30404d") // Same as GridCard bg
+	colorBackground, _ := colorful.Hex("#0b0b0b") // Same as the card thumbnail background
 
 	var stepSize = 125.0
 	var f float64

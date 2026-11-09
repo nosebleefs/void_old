@@ -205,7 +205,49 @@ $sceneTabWidth: 450px;
     width: 100%;
 
     .vjs-progress-holder {
+      background-color: rgba(255, 255, 255, 0.22);
+      border-radius: 2px;
       margin: 0 15px;
+    }
+  }
+
+  // played / buffered portions of the seek bar
+  .vjs-load-progress {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 2px;
+
+    div {
+      background: rgba(255, 255, 255, 0.14);
+    }
+  }
+
+  .vjs-play-progress {
+    background-color: $void-accent;
+    border-radius: 2px;
+
+    &::before {
+      color: $void-text-strong;
+    }
+  }
+
+  .vjs-volume-level {
+    background-color: $void-accent;
+  }
+
+  .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+    background-color: $void-surface-2;
+    border: 1px solid $void-line-2;
+    border-radius: $void-radius;
+  }
+
+  .vjs-menu li {
+    border-radius: 6px;
+
+    &.vjs-selected,
+    &.vjs-selected:focus,
+    &.vjs-selected:hover {
+      background-color: $void-text;
+      color: $void-bg;
     }
   }
 
@@ -227,8 +269,8 @@ $sceneTabWidth: 450px;
   /* stylelint-enable declaration-no-important */
 
   .vjs-vtt-thumbnail-display {
-    border: 2px solid white;
-    border-radius: 2px;
+    border: 2px solid $void-text-strong;
+    border-radius: $void-radius-sm;
     bottom: 6em;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);
     opacity: 0;
@@ -330,12 +372,11 @@ $sceneTabWidth: 450px;
   }
 
   .vjs-marker-tooltip {
-    background-color: #fff;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 0.3em;
-    color: #000;
+    background-color: $void-surface-6;
+    border-radius: 6px;
+    color: $void-text;
     float: right;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $void-font-sans;
     font-size: 0.6em;
     padding: 6px 8px 8px 8px;
     pointer-events: none;
@@ -517,9 +558,10 @@ $sceneTabWidth: 450px;
 }
 
 .scrubber-button {
-  background-color: transparent;
-  border: 1px solid #555;
-  color: $link-color;
+  background-color: $void-surface-2;
+  border: 1px solid $void-line-2;
+  border-radius: $void-radius-sm;
+  color: $void-text-3;
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 800;
@@ -548,7 +590,7 @@ $sceneTabWidth: 450px;
 }
 
 #scrubber-position-indicator {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba($void-accent, 0.55);
   height: 20px;
   left: -100%;
   position: absolute;
@@ -557,7 +599,7 @@ $sceneTabWidth: 450px;
 }
 
 #scrubber-current-position {
-  background-color: #fff;
+  background-color: $void-text-strong;
   height: 30px;
   left: 50%;
   position: absolute;
@@ -584,7 +626,8 @@ $sceneTabWidth: 450px;
   position: relative;
 
   &-background {
-    background-color: #555;
+    background-color: $void-surface-5;
+    border-radius: 4px;
     height: 20px;
     left: 0;
     position: absolute;
@@ -601,7 +644,8 @@ $sceneTabWidth: 450px;
 }
 
 .scrubber-tag {
-  background-color: #000;
+  background-color: $void-bg;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 10px;
   height: 20px;
@@ -611,12 +655,12 @@ $sceneTabWidth: 450px;
   white-space: nowrap;
 
   &:hover {
-    background-color: #444;
+    background-color: $void-surface-6;
     z-index: 1;
   }
 
   &:hover::after {
-    border-top: solid 5px #444;
+    border-top: solid 5px $void-surface-6;
     z-index: 1;
   }
 

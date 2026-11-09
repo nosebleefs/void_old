@@ -20,7 +20,7 @@
 
     .name-icons {
       .not-favorite {
-        color: rgba(191, 204, 214, 0.5);
+        color: $void-muted;
       }
 
       .favorite {
@@ -247,7 +247,7 @@
 }
 
 .performer-table .age-data span {
-  border-bottom: 1px dotted #f5f8fa;
+  border-bottom: 1px dotted $void-text;
 }
 
 .performer-result .performer-details > span {

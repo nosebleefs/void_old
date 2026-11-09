@@ -337,7 +337,7 @@ const SceneCardDetails = React.memo(
         <TruncatedText
           className="scene-card__description"
           text={props.scene.details}
-          lineCount={3}
+          lineCount={2}
         />
       </div>
     );

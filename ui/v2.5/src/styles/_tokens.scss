@@ -1,0 +1,77 @@
+/*
+ * Void — the default Stash theme.
+ *
+ * Design tokens. Every colour, radius and font used by the interface is
+ * defined here first. Component styles should reference these variables
+ * rather than hard-coding values, so the whole look can be tuned from one
+ * place.
+ *
+ * The page background is true black (#000) so OLED displays switch those
+ * pixels off. Surfaces step up in very small increments so panels are
+ * distinguishable without breaking the black canvas.
+ */
+
+// ---------------------------------------------------------------------------
+// Surfaces (darkest to lightest)
+// ---------------------------------------------------------------------------
+$void-bg: #000; // page background
+$void-surface-1: #0b0b0b; // cards, panels, modals
+$void-surface-2: #0d0d0d; // form controls, toolbar buttons, menus
+$void-surface-3: #111; // selected / active rows
+$void-surface-4: #141414; // hover on minimal buttons
+$void-surface-5: #1a1a1a; // raised elements, secondary buttons
+$void-surface-6: #1f1f1f; // pressed / selected segmented button
+
+// ---------------------------------------------------------------------------
+// Lines
+// ---------------------------------------------------------------------------
+$void-line: #161616; // hairline separators (navbar, sidebar, tables)
+$void-line-2: #1f1f1f; // control borders
+$void-line-3: #262626; // chip borders, stronger dividers
+$void-line-4: #3a3a3a; // hover borders
+
+// ---------------------------------------------------------------------------
+// Text (all values pass WCAG AA on #000 and on the surfaces above)
+// ---------------------------------------------------------------------------
+$void-text-strong: #fff;
+$void-text: #f2f2f2;
+$void-text-2: #d6d6d6;
+$void-text-3: #b3b3b3;
+$void-text-nav: #9a9a9a;
+$void-muted: #8c8c8c;
+$void-faint: #5c5c5c; // decorative only, never for readable text
+
+// ---------------------------------------------------------------------------
+// Accent and status colours
+// ---------------------------------------------------------------------------
+$void-accent: #5aa9ff;
+$void-accent-hover: #80bdff;
+$void-accent-soft: rgba($void-accent, 0.12);
+$void-accent-line: rgba($void-accent, 0.4);
+$void-on-accent: #000; // text placed on an accent background
+
+$void-success: #34c77b;
+$void-warning: #f5a524;
+$void-danger: #f05252;
+$void-info: $void-accent;
+
+// overlay pill on top of images (resolution, duration, rating)
+$void-overlay: rgba(0, 0, 0, 0.72);
+
+// ---------------------------------------------------------------------------
+// Shape and type
+// ---------------------------------------------------------------------------
+$void-radius-sm: 8px;
+$void-radius: 10px;
+$void-radius-lg: 14px;
+$void-radius-xl: 16px;
+$void-radius-pill: 999px;
+
+$void-font-sans: "Inter Variable", "Inter", -apple-system, blinkmacsystemfont,
+  "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+$void-font-mono: ui-monospace, "SF Mono", menlo, monaco, consolas,
+  "Liberation Mono", monospace;
+
+$void-control-height: 40px;
+$void-shadow-pop: 0 16px 48px rgba(0, 0, 0, 0.7);
+$void-transition: 0.18s ease;

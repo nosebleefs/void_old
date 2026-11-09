@@ -41,7 +41,7 @@ export const calculateCardWidth = (
   preferredWidth: number
 ) => {
   const containerPadding = 30;
-  const cardMargin = 10;
+  const cardMargin = 20;
   const maxUsableWidth = containerWidth - containerPadding;
   const maxElementsOnRow = Math.ceil(maxUsableWidth / preferredWidth);
   return maxUsableWidth / maxElementsOnRow - cardMargin;

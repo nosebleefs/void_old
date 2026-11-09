@@ -182,8 +182,9 @@ export function useSidebarState(view?: View) {
 
     if (loading) return;
 
-    // only show sidebar by default on large screens
-    setShowSidebar(!!viewConfig.showSidebar && defaultShowSidebar());
+    // show the filter sidebar by default on large screens, until the user
+    // chooses to hide it for this view
+    setShowSidebar((viewConfig.showSidebar ?? true) && defaultShowSidebar());
     setSectionOpen(
       (history.location.state as { sectionOpen?: SidebarSectionStates })
         ?.sectionOpen || {}
