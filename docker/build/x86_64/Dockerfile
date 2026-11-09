@@ -37,7 +37,10 @@ RUN make flags-release flags-pie stash
 
 # Final Runnable Image
 FROM alpine:latest
-RUN apk add --no-cache ca-certificates vips-tools ffmpeg
+# Same runtime packages as the official image: Python and the libraries that
+# community scrapers and plugins rely on, time zone data, and HEIF support.
+RUN apk add --no-cache ca-certificates python3 py3-requests py3-requests-toolbelt py3-lxml py3-pip ffmpeg tzdata vips vips-tools vips-heif \
+  && pip install --break-system-packages mechanicalsoup cloudscraper stashapp-tools
 COPY --from=backend /stash/stash /usr/bin/
 ENV STASH_CONFIG_FILE=/root/.stash/config.yml
 EXPOSE 9999
